@@ -9,3 +9,19 @@ html을 그대로 쓰고 서버없이도 껍데기를 볼 수 있다.
 뷰 리졸버 : 뷰를 찾아주고 연결해준다
 
 @ResponseBody -> body 이 내용을 직접 넣어준다는 의미의 어노테이션
+데이터를 그대로 내려버린다.
+
+JSON으로 반환하는것이 기본이다.
+JSON key / value로 이루어져 있다.
+
+@ResponseBody 를 사용
+HTTP의 BODY에 문자 내용을 직접 반환
+viewResolver 대신에 HttpMessageConverter 가 동작
+기본 문자처리: StringHttpMessageConverter
+기본 객체처리: MappingJackson2HttpMessageConverter
+byte 처리 등등 기타 여러 HttpMessageConverter가 기본으로 등록되어 있다.
+
+
+ResponseBody에 String이면 바로 넣지만 객체가 오면
+HttpMessageConverter가 동작을 한다.
+String이 오면 StringConverter, 객체가 오면 JsonConverter 반환
