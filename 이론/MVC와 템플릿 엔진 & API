@@ -1,0 +1,11 @@
+MVC : Model, View, Controller
+
+옛날에는 Controller와 View가 합쳐져있었는데 그걸 Model1 방식이라고 한다
+요즘은 MVC 방식으로 한다.
+
+thymeleaf의 장점
+html을 그대로 쓰고 서버없이도 껍데기를 볼 수 있다.
+
+뷰 리졸버 : 뷰를 찾아주고 연결해준다
+
+@ResponseBody -> body 이 내용을 직접 넣어준다는 의미의 어노테이션
