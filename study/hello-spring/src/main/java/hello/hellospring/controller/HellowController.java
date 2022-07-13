@@ -15,7 +15,7 @@ public class HellowController {
 
     @GetMapping("hello")
     public String hello (Model model){
-        model.addAttribute("data", "hello!!");
+        model.addAttribute("data", "hyeok!!");
         return "hello";
     }
 
