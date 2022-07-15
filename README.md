@@ -1,6 +1,4 @@
-# Study
-study
-# Chris's Spring Study log
+# JONG HYEOK CHOI
 > Easier said than done...
 --- 
 ### Commit Role
