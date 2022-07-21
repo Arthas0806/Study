@@ -1,0 +1,40 @@
+
+
+화면 만들기 : File > new > Form > Name입력 > width:800px height: 600px 정도로 입력 후 finish
+
+Static 컴포넌트는 HTML의 lable처럼 화면에 표시만 해주는 용도입니다. ex) 비밀번호 :를화면에 띄움
+
+기능을 모를 땐 API를 참고하자  : F1 > 검색 > 입력 후 클릭
+
+프로퍼티는 컴포넌트의 속성을 의미한다.
+
+this.alert(this. 컴포넌트의 id값. text)  // 해당 컴포넌트의 text프로퍼티 값을 가져옴.
+
+this. 컴포넌트의 id값. set_text("변경할 값")   //해당 컴포넌트의 값을 "변경할 값"으로 변경함.
+
+실행(QuickView) : ctrl + F6 따로 브라우저나 서버 없이 자체적으로 화면 보여줌.
+
+자바스크립트에서 this는 현재 실행되고 있는 자기 자신 태그를 의미했다. 여기선 this가 현재 화면 form을 의미한다.
+
+Combo는 HTML의 select태그와 비슷하다. 그렇다면 Option은 어떻게 줄까?
+
+Combo의 프로퍼티의 innerdataset을 클릭 >... 를 눌러 +로 직접 추가해주거나 or 만들어둔 데이터셋을 선택하여 설정한다.
+
+DataSet은 플랫폼에서 다루는 데이터의 덩어리입니다. 
+
+DataSet : 우측의 Application indormation > Application Variables  > DataSet을 화면에 드롭한다 >  하단에 Invisible Object에서 생긴 데이터셋을 클릭하여 id를 바꾼다. columns과 row에 맞게 데이터를 만든다.(데이터셋은 appvariables.xml에 관리함.)
+
+같은 combo를 복사해서 사용할 때 dataSet을 적용하면 같은 form에서 매번 만들 필요 없이 같은 combo를 사용할 수 있다. 
+만약 다른 form(화면)을 만들어서 그 combo를 복붙으로 쓸 땐 DataSet이 해당 화면에만 있으니 같을 수없다.
+ 즉 다른 페이지에서도 데이터 셋을 쓰고 싶다면 데이터셋을 Globol로 만들어 사용한다.
+ Global로 만드는 방법은 우측의 Application indormation > Application Variables  > Variables를 클릭 +를 클릭하여 만든다. (자세한 설정은 하단 이미지 참조 01)
+
+굳이 화면에 사용할 데이터는 DB가 아니라 DataSet을 이용해 만들어 사용한다. 
+일일이 DB에서 SQL로 가져와서 JSTL로 힘들게 뿌려줬던 Select의 값들을 이렇게 DataSet으로 표현하면 된다!
+
+생성되는 모든 컴포넌트의 id는 유일합니다! (자동으로 01,02,03 생성됨)
+
+Edit과 MaskEdit의 차이는?Edit : input 태그처럼 키보드로 아무 값을 입력받습니다,  
+MaskEdit : 특정 속성만 입력 가능 (디폴트는 숫자로 되어있음) 즉 정규식처럼 어떻게 넣는 값을 정할지 결정하는 것이 포인트!
+정렬 : 정렬하고 싶은 컴포넌트를 모두 마우스로 끌어 선택하고 기준으로 할 컴포넌트를 "shift +클릭!" 그 후 옵션 중 선택하여 정렬한다. (아래 이미지 참조 02)
+EditMask의 프로퍼티 중에 format 속성으로 글자 수를 제한하거나 입력을 넣을 기준을 주거나 한글만 영어만 숫자만 ", ", 소수점 표현등 등을 제한할 수 있다. 자세한 기능은 API의 EditMask의 property 중 format 란을 참고하면 된다. 아래 내용에 api내용을 참고로 뒀다.
