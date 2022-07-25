@@ -145,3 +145,4 @@ HTTP 메서드의 속성
 * GET, HEAD, POST, PATCH 캐시가능
 * 실제로는 GET, HEAD 정도만 캐시로 사용
 	* POST, PATCH는 본문 내용까지 캐시 키로 고려해야 하는데, 구현이 쉽지 않다.
+	
