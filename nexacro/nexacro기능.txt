@@ -1,0 +1,143 @@
+Environment 
+- 실행 환경 정보를 가지고 있는 설정 파일로 더블 클릭 또는 마우스 우클릭 Edit 메뉴를 통하여 편집합니다.
+
+variables - 스크립트 사용 방식
+// Variable 값 반환
+var sValue = nexacro.getEnvironmentVariable("Env_Var1");
+// Variable 추가
+nexacro.setEnvironmentVariable("Env_Var1", "nexacro platform");
+// Variable 제거
+nexacro.removeEnvironmentVariable("Env_Var1");
+Cookies- 스크립트 사용 방식
+// Variable 값 반환
+var sValue = nexacro.getEnvironmentVariable("Env_Var1");
+// Variable 추가
+nexacro.setEnvironmentVariable("Env_Var1", "nexacro platform");
+// Variable 제거
+nexacro.removeEnvironmentVariable("Env_Var1");
+
+HTTP Header : 스크립트 사용 방식
+
+// HTTP header 값 반환
+var headerValue = nexacro.getHTTPHeaderVariable("Env_Http1");
+
+// HTTP Header 추가
+nexacro.setHTTPHeaderVariable("Env_Http1", "nexacro platform");
+
+// HTTP header 제거
+nexacro.removeHTTPHeaderVariable("Env_Http1");
+
+Script : Environment에서 공통으로 정의하는 스크립트 또는, 여러개의 애플리케이션에서 같이 사용 할 스크립트를 작성 합니다.
+// 스크립트 작성
+this.Env_Script = function()
+{
+	return "Env Script Call";
+}
+// 스크립트로 접근
+car objEnv = nexacro.getEnvironment()
+objEnv.Env_Script();
+
+TypeDefinition
+ Object는 Module 정보와 Module에 정의 되어 있는 오브젝트를 관리 합니다.
+
+Services는 화면, 스크립트, 서버 경로 등을 설정하여 사용하며 지정하는 Type에 따라 서비스에 표시되는 파일 타입이 제한 됩니다.
+Base 서비스가 기본으로 생성되며, 프로젝트 생성시 프레임 구조를 선택한 경우 FrameBase라는 서비스에 프레임이 들어갈 Form까지 자동 생성됩니다.
+
+Protocols 넥사크로플렛폼에서는 기본 HTTP 프로토콜을 사용해 요청과 응답을 처리합니다.
+
+AppVariables는 애플리케이션과 화면에서 공통으로 사용하며 여러 개의 애플리케이션으로 구성한 경우 애플리케이션별 변수 공유가 불가 합니다.
+
+// Application Object 를 이용하여 접근
+var objApp = nexacro.getApplication();
+objApp.Dataset0.getRowCount();
+
+maskedit 기능 - format으로 받는 형식을 설정할 수 있다.
+패스워드 처리가 가능하며 마스크 문자를 중괄호 {}로 감싸면
+해당 마스크 문자가 *로 대체되어 출력됩니다.
+
+spin 일정 범위 내의 숫자 값을 입력하기 위해 사용하는 컴포넌트입니다
+value의 값은 문자형 이므로 연산을 위해서는 숫자 형변환이 필요합니다.
+
+combobox - innerdataset속성에 후보 값을 미리 설정해 주어야 하며
+innerdataset은 직접 편집할 수도 있고 innerdataset에 로컬의 dataset으로 받아와 사용이 가능합니다.
+
+Div는 하나의 화면에 여러 개의 부분 화면을 구성할 때 사용하는 컴포넌트입니다.
+Div안에 다른 컴포넌트를 생성하거나 이미 만들어진 화면을 링크하여 사용할 수 있습니다.
+
+Tab은 여러개의 TabPage를 추가해서 보여주는 컴포넌트 입니다.
+TabPage에 다른 컴포넌트를 생성하거나 이미 만들어진 화면을 링크하여 사용할 수 있습니다.
+
+PopupDiv는 하나의 화면에 여러 개의 부분화면을 구성할 떄 사용하는 컴포넌트입니다.
+Div 컴포넌트와 비슷하나 PopupDiv는 포커스를 잃게 되면 자동으로 사라지게 됩니다.
+
+autofittype - col로 지정하면 Grid에 크기에 맞게 데이터가 표현됩니다.
+cellsizingtype - 사용자가 마우스로 Row 또는 Column의 크기를 변경할 수 있게 설정하는 속성입니다.
+autosizetype - Grid에 데이터가 모두 표시되도록 크기를 자동조절 할 지 설정하는 속성
+autosizebandtype - autosizetype 속성에 의해 자동으로 크기가 조절 될 영역을 설정하는 속성입니다.
+nodatatext - Grid에 표시할 데이터가 없을 때 출력할 텍스트를 설정하는 속성입니다.
+
+포멧을 변경해주는 메소드(set_formatid)를 이용하여 포멧을 변경할 수 있습니다.
+this.btn_format_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Grid01.set_formatid("format1");
+};
+
+this.btn_default_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Grid01.set_formatid("default");
+};
+
+displaytype
+데이터 형식에 따라 여러 가지 형태로 셀의 모양을 변경 할 수 있습니다.
+Head의 Text에 displaytype에 설정 된 속성값을 표시해 두었습니다.
+
+displaytype이 decoratetext일 경우에는 Data 값에 tag 형식이 포함되어야 합니다.
+
+바인드 된 데이터와 일치하는 아이템이 데이터값에 표시되기 위해서는 추가지정이 필요합니다
+하단의 그룹으로 구성된 부분에 각 displaytype에 맞는 값들을 지정하시면 됩니다.
+
+grid를 트리형태로 표현하는 방법
+
+해당 cell의 displaytype에 treeitemcontrol을 선택하고 edittype에 tree를 선택합니다. (displaytype : treeitemcontrol, edittype : tree)
+CellTreeItem 그룹의 속성에 해당 컬럼 값을 binding 합니다. (treelevel : MENU_LEVEL)
+
+Expression 사용법
+셀의 text 속성 세 번째 버튼을 클릭해서 Expression 창을 오픈 한 후 해당 창에 사용
+예약어
+currow : 1씩 늘어나는 숫자 0, 1, 2, ,3 ,4, 5, 6, 7 -> 그리드의 currow가 아닌 그리드가 바라보고있는 데이터 셋의 currow다.
+
+삼항연산자
+
+세 개의 피연산자를 입력받는 연산자
+
+형식 ( A ? B : C )
+- A : 조건
+- B : 조건이 참일 때 처리
+- C : 조건이 거짓일 때 처리
+
+getRowCount() 실행
+
+comp.parent.ds_emp.getRowCount()
+
+Comp - Expression을 적용하고 있는 컴포넌트 / Parent - 컴포넌트의 부모, 즉 화면 객체
+바인딩 되어 있는 Dataset인 경우에는 comp와 parent대신 예약어인 dataset을 사용합니다.
+
+함수 사용
+
+함수가 길어질수록 성능저하가 생겨서 추천하지 않는 방법
+함수 선언 후 
+Expression = comp.parent.함수()
+
+nexacro API & JavaScript API
+
+
+정리
+
+사칙연산 : FULL_NAME + EMPL_ID
+수식내에서 지원하는 예약어 : currow + 1
+삼항연산자(A?B:C) : GENDER == "M" ? "Male" ? "Female"
+데이터 셋 메소드 : comp,parent.ds_emp.getRowCount()
+바인딩 된 데이터 셋 메소드 : dataset.getRowCount()
+함수호출 : comp.parent.fn_code(GENDER)
+Nexacro API : nexacro.round(34.873, 2)
+
