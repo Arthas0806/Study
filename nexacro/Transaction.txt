@@ -1,0 +1,43 @@
+넥사크로
+
+Transaction은 서버와 통신하여 데이터를 전송하고 받아오기 위한 메소드입니다.
+Transaction은 Service를 호출하여 여러 개의 Dataset과 Variable를 주고받습니다.
+기본통신은 Asyn 방식이므로 통신완료 후 결과 값을 Callback함수로 받습니다.
+
+Sync(동기)
+
+Sync 방식은 transaction 함수가 Service를 호출 후 통신이 완료되는 시점까지 대기하다가
+통신 결과를 받으면 다음 스크립트를 실행합니다.
+
+Asyn 방식은 transaction 함수가 Service를 호출 후 통신이 완료되지 않아도
+다음 스크립트를 실행하고 통신완료 후 결과를 Callback함수로 받습니다.
+
+Application.transaction(strSvcID,strURL,strInDatasets,strOutDatasets,strArgument,
+strCallbackFunc[,bAsync[,nDataType[,bCompress]]])
+
+
+var strSvcID = "";			// 트랜잭션을 구분하기 위한 ID
+var strURL = "";			// 트랜잭션을 요청할 서버페이지 주소
+var strIndatasets = "";		// 서버로 보낼 Dataset ( ServerDatasetID = FormDatasetID)
+var strOutDatasets = "";	// 서버에서 보내는 데이터를 받을 Dataset (FormDatasetID = ServerDatasetID)
+var strArgument = "";		// 서버로 보낼 변수 (변수ID = 변수값)
+var strCallbackFunc = "":	// 서버의 처리 결과를 받을 콜백함수
+
+bAsync 
+- Transaction을 비동기(Async)로 또는 동기(Sync)처리할지 설정
+- 설정값 : true - 비동기
+		 false - 동기
+		 default - true
+		 
+nDataType 
+- Transaction 전송되는 데이터 형태를 설정
+- 설정값 : 0 - XML
+		 1 - Binary
+		 2 - SSV
+		 default - 0
+		 
+bCompress
+- Transaction 데이터 압축여부
+- 설정값 : true - 압축
+		 false - 압축하지 않음
+		 default - false
