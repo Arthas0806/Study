@@ -1,0 +1,217 @@
+넥사크로 기능
+// Exercise 1 ================================================================
+// Exe 1-1
+this.btn_Exe1_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nColCount = this.Dataset1.getColCount(); // this.Dataset1.colcount;
+	var nRowCount = this.Dataset1.getRowCount(); // this.Dataset1.rowcount;
+	trace("Col Count=" + nColCount + " : Row Count=" + nRowCount);	
+	
+	this.txtRtn1.set_value("Col Count=" + nColCount + " : Row Count=" + nRowCount);
+    
+// 	for(var i=0; i<nColCount; i++){
+// 		var sColID = this.Dataset1.getColID(i);
+// 		trace("Col ID=" + sColID);
+// 	}
+
+};
+
+// Exe 1-2
+this.btn_Exe1_2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset1.addColumn("COL_CHK", "STRING");
+};
+
+// Exercise 2 ================================================================
+// Exe 2-1
+this.btn_Exe2_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.Dataset1.findRow("EMPL_ID", "KR120");
+	var sVal = this.Dataset1.getColumn(nRow, "FULL_NAME");
+
+    trace(sVal);	
+	this.txtRtn1.set_value(sVal);	
+};
+
+// Exe 2-2
+this.btn_Exe2_2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.Dataset1.findRowExpr("DEPT_CODE == 'K10' && SALARY <= 5000");
+	var sVal = this.Dataset1.getColumn(nRow, "FULL_NAME");
+	trace(sVal);	
+	this.txtRtn1.set_value(sVal);	
+};
+
+// Exe 2-3
+this.btn_Exe2_3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sText = "";
+	var arrRow = this.Dataset1.extractRows("DEPT_CODE=='K10'");
+	for(var i=0; i<arrRow.length; i++){
+		var sValue = this.Dataset1.getColumn(arrRow[i], "FULL_NAME");
+		trace(sValue);
+		sText += sValue + "\n";
+	}
+	
+	this.txtRtn1.set_value(sText);
+};
+
+// Exercise 3 ================================================================
+// Exe 3-1
+this.btn_Exe3_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nAvgM  = this.Dataset1.getCaseAvg("GENDER=='M'", "SALARY");
+	var nAvgW1 = this.Dataset1.getCaseAvg("GENDER=='W'", "SALARY");
+	var nAvgW2 = this.Dataset1.getCaseAvg("GENDER=='W'", "SALARY",0, -1, false);
+	trace("Man Avg=" + Math.round(nAvgM, 2) + " : Woman Avg=" + nAvgW1 + " : " + nAvgW2);
+	this.txtRtn1.set_value("Man Avg=" + Math.round(nAvgM, 2) + " : Woman Avg=" + nAvgW1 + " : " + nAvgW2);
+};
+
+// Exe 3-2
+this.btn_Exe3_2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nAvg = this.Dataset1.getAvg("SALARY+BONUS");
+	trace("Salary+Bonus AVG=" + nAvg);
+	this.txtRtn1.set_value("Salary+Bonus AVG=" + nAvg);
+};
+
+// Exe 3-3
+this.btn_Exe3_3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset1.set_keystring("S:-HIRE_DATE");	
+};
+
+// Exe 3-4
+this.btn_Exe3_4_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset1.filter("GENDER == 'M' && MARRIED == '1'");	
+};
+
+// Exe 3-5
+this.btn_Exe3_5_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nCnt   = this.Dataset1.getRowCount();
+	var nCntNF = this.Dataset1.getRowCountNF();
+	trace(nCnt + " : " + nCntNF);
+	this.txtRtn1.set_value(nCnt + " : " + nCntNF);
+};
+
+
+this.btn_Exe3_Filter_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    // like filter --> String.indexOf()
+	var sText = "e";
+
+};
+
+
+// Exercise 4 ================================================================
+// Exe 4-1
+this.btn_Exe4_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow  = this.Dataset4.insertRow(0);
+	var nType = this.Dataset4.getRowType(nRow);
+	trace("Insert Rowtype: " + nType);
+	this.txtRtn2.set_value("Insert Rowtype: " + nType);
+};
+
+// Exe 4-2
+this.btn_Exe4_2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset4.setColumn(1, "FULL_NAME", "Nexacro");
+	var nType = this.Dataset4.getRowType(1);
+	trace("Update Rowtype: " + nType);
+	this.txtRtn2.set_value("Update Rowtype: " + nType);
+};
+
+// Exe 4-3
+this.btn_Exe4_3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sCurData = this.Dataset4.getColumn(1, "FULL_NAME");
+	var sOrgData = this.Dataset4.getOrgColumn(1, "FULL_NAME");	
+	trace("Cur Data=" + sCurData + " : Org Data=" + sOrgData);	   
+	this.txtRtn2.set_value("Cur Data=" + sCurData + " : Org Data=" + sOrgData);
+};
+
+// Exe 4-4
+this.btn_Exe4_4_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var arrRow = [3,4,5]; 
+	this.Dataset4.deleteMultiRows(arrRow);
+};
+
+// Exe 4-5
+this.btn_Exe4_5_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nDelCnt  = this.Dataset4.getDeletedRowCount();	
+	var sDelData = this.Dataset4.getDeletedColumn(0, "FULL_NAME");
+	trace("Del Count=" + nDelCnt + " Del Data=" + sDelData);	
+	this.txtRtn2.set_value("Del Count=" + nDelCnt + " Del Data=" + sDelData);	
+	
+// 	var arrDel = this.Dataset4.getDeletedRowset();
+// 	trace(arrDel[0]);
+	
+};
+
+
+// Exe4 - Data Check
+this.btn_Exe4_Check_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+};
+
+// Exercise 5 ================================================================
+// Exe 5-1
+this.btn_Exe5_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset5.copyData(this.Dataset4);
+	this.Grid5.createFormat();
+};
+
+// Exe 5-2
+this.btn_Exe5_2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset5.assign(this.Dataset4);
+	this.Grid5.createFormat();
+};
+
+// Exe 5-3
+this.btn_Exe5_3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nFromRow = this.Dataset4.findRow("EMPL_ID", "KR040");
+	var nToRow   = this.Dataset5.addRow();
+	this.Dataset5.copyRow(nToRow, this.Dataset4, nFromRow);	
+};
+
+// Exe 5-4
+this.btn_Exe5_4_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nFromRow = this.Dataset4.findRow("EMPL_ID", "KR210");
+	var nToRow   = this.Dataset5.addRow();
+	var sCol = "EMPL_ID=EMPL_ID, FULL_NAME=FULL_NAME";	
+	this.Dataset5.copyRow(nToRow, this.Dataset4, nFromRow, sCol);
+};
+
+
+// Exercise 6 ================================================================
+this.Dataset6_cancolumnchange = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	trace("cancolumnchange");
+};
+
+this.Dataset6_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	trace("oncolumnchanged");
+};
+
+// Exe 6-3
+this.btn_Exe6_3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset6.setColumn(0, "FULL_NAME", "Modify1");
+};
+
+// Exe 6-5
+this.btn_Exe6_5_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset6.setColumn(1, "FULL_NAME", "Modify2");
+};
