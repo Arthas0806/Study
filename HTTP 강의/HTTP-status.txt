@@ -31,7 +31,7 @@
 	• 결과 내용이 없어도 204 메시지(2xx)만으로 성공을 인식할 수 있다.
 
 3xx (Redirection) - 모든 요청을 완료하기 위해 유저 에이전트의 추가 조치 필요
-	• 300 Multiple Choices
+	• 300 Multiple Choices - 안쓴다
 	• 301 Moved Permanently
 	• 302 Found
 	• 303 See Other
