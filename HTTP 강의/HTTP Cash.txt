@@ -57,7 +57,20 @@ cache-control: max-age=60 -> 캐시가 유용한 시간(초)
    • If-None-Match:ETag 사용
    • 조건이 만족하면 200 OK
    • 조건이 만족하지 않으면 304 Not Modified
-   
+
+예시)
+
+• If-Modified-Since: 이후에 데이터가 수정되었으면?
+	• 데이터 미변경 예시
+		• 캐시: 2020년 11월 10일 10:00:00 vs 서버: 2020년 11월 10일 10:00:00
+		• 304 Not Modified, 헤더 데이터만 전송(BODY 미포함)
+		• 전송 용량 0.1M (헤더 0.1M, 바디 1.0M)
+	• 데이터 변경 예시
+		• 캐시: 2020년 11월 10일 10:00:00 vs 서버: 2020년 11월 10일 11:00:00
+		• 200 OK, 모든 데이터 전송(BODY 포함)
+		• 전송 용량 1.1M (헤더 0.1M, 바디 1.0M
+
+
 검증 헤더와 조건부 요청
 Last_Modified, If-Modified-Since 단점
 
@@ -140,3 +153,5 @@ Expires
 • 조건부 요청 헤더
   • If-Match, If-None-Match:ETag 값 사용
   • If-Modified-Since, If-Unmodified-Since:Last-Modified값 사용
+  
+  
